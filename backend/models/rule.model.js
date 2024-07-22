@@ -10,5 +10,5 @@ const ruleSchema = new Schema({
 });
 
 const Rule = mongoose.model('Rule', ruleSchema);
-
+//added
 module.exports = Rule;
