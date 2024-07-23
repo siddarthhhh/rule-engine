@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function CreateRule() {
+function CreateRule() {
   const [name, setName] = useState('');
   const [ruleString, setRuleString] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    const rule = {
+    
+    const newRule = {
       name: name,
       ruleString: ruleString
-    }
+    };
 
-    axios.post('http://localhost:5000/api/rules/add', rule)
-      .then(res => console.log(res.data));
-
-    setName('');
-    setRuleString('');
-  }
+    axios.post('http://localhost:5000/api/rules/add', newRule)
+      .then(res => {
+        console.log(res.data);
+        alert('Rule added successfully!');
+        setName('');
+        setRuleString('');
+      })
+      .catch(err => console.log('Error: ' + err));
+  };
 
   return (
     <div>
@@ -47,5 +50,7 @@ export default function CreateRule() {
         </div>
       </form>
     </div>
-  )
+  );
 }
+
+export default CreateRule;
